@@ -1,0 +1,52 @@
+﻿<Window x:Class="CalendrierAvent.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Calendrier de l'Avent"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Width="1280"
+        Height="720"
+        Background="#F7F3E9"
+        Loaded="Window_Loaded">
+
+    <Grid Background="#F7F3E9">
+
+        <!-- Vidéo plein écran (avec marges), recadrée sans déformation -->
+        <MediaElement x:Name="IntroVideo"
+                      HorizontalAlignment="Stretch"
+                      VerticalAlignment="Stretch"
+                      Margin="40"
+                      Stretch="UniformToFill"
+                      LoadedBehavior="Manual"
+                      UnloadedBehavior="Stop"
+                      MediaFailed="IntroVideo_MediaFailed"
+                      MediaEnded="IntroVideo_MediaEnded" />
+
+        <!-- Titre + date au-dessus, masqués au départ -->
+        <StackPanel x:Name="TitlePanel"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Center"
+                    Margin="0,20,0,0"
+                    Opacity="0">
+
+            <TextBlock x:Name="TitleText"
+                       Text=""
+                       FontSize="50"
+                       FontWeight="Bold"
+                       Foreground="#CC1A1A"   
+                       TextAlignment="Center"
+                       FontFamily="Segoe UI Black" />
+
+            <TextBlock x:Name="DateText"
+                       Margin="0,10,0,0"
+                       Text=""
+                       FontSize="28"
+                       FontWeight="SemiBold"
+                       Foreground="#FFD700"   
+                       TextAlignment="Center"
+                       FontFamily="Segoe UI Semibold" />
+
+        </StackPanel>
+
+    </Grid>
+</Window>
