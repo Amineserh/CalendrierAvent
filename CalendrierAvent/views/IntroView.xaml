@@ -1,0 +1,67 @@
+﻿<UserControl x:Class="CalendrierAvent.Views.IntroView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid Background="#000000">
+        <MediaElement x:Name="IntroVideo"
+                      HorizontalAlignment="Stretch"
+                      VerticalAlignment="Stretch"
+                      Margin="40"
+                      Stretch="UniformToFill"
+                      LoadedBehavior="Manual"
+                      UnloadedBehavior="Stop"
+                      MediaEnded="IntroVideo_MediaEnded"
+                      MediaFailed="IntroVideo_MediaFailed" />
+
+        <!-- Bouton Skip -->
+        <Border HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Margin="0,20,20,0"
+                Background="#AA000000">
+            <Button x:Name="SkipButton"
+                    Content="Skip"
+                    Width="120"
+                    Height="45"
+                    Background="Transparent"
+                    Foreground="White"
+                    FontSize="18"
+                    BorderThickness="0"
+                    Opacity="0.85"
+                    Click="SkipButton_Click" />
+        </Border>
+
+        <!-- Popup prénom -->
+        <Grid x:Name="NamePopup"
+              Background="#80000000"
+              Visibility="Collapsed">
+            <Border Background="White"
+                    Padding="20"
+                    Width="450"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+                <StackPanel>
+                    <TextBlock Text="Ho ho ho... qui est là ?"
+                               FontSize="26"
+                               FontWeight="Bold"
+                               Margin="0,0,0,10"
+                               TextAlignment="Center" />
+                    <TextBlock Text="Entre ton prénom pour continuer ✨"
+                               FontSize="16"
+                               Margin="0,0,0,15"
+                               TextAlignment="Center" />
+                    <TextBox x:Name="NameTextBox"
+                             FontSize="18"
+                             Margin="0,0,0,15"/>
+                    <Button Content="Valider"
+                            Width="130"
+                            Height="40"
+                            HorizontalAlignment="Center"
+                            Background="#CC1A1A"
+                            Foreground="White"
+                            FontSize="18"
+                            BorderThickness="0"
+                            Click="ConfirmNameButton_Click" />
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

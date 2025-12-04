@@ -1,74 +1,89 @@
 ﻿<Window x:Class="CalendrierAvent.MainWindow"
-       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-       Title="Calendrier de l'Avent"
-       WindowStartupLocation="CenterScreen"
-       ResizeMode="NoResize"
-       Width="1280" Height="720"
-       Background="#000000"
-       Loaded="Window_Loaded">
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Calendrier de l'Avent"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Width="1280" Height="720"
+        Background="#000000">
+
+    <Window.Resources>
+        <!-- Animation d'apparition du titre + date -->
+        <Storyboard x:Key="TitleAppearStoryboard">
+            <DoubleAnimation Storyboard.TargetName="TitlePanel"
+                             Storyboard.TargetProperty="Opacity"
+                             From="0" To="1"
+                             Duration="0:0:1.2">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <DoubleAnimation Storyboard.TargetName="TitleScale"
+                             Storyboard.TargetProperty="ScaleX"
+                             From="0.9" To="1"
+                             Duration="0:0:1.2">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <DoubleAnimation Storyboard.TargetName="TitleScale"
+                             Storyboard.TargetProperty="ScaleY"
+                             From="0.9" To="1"
+                             Duration="0:0:1.2">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+    </Window.Resources>
+
     <Grid Background="#000000">
-        <!-- ÉCRAN VIDÉO -->
-        <Grid x:Name="IntroGrid">
-            <MediaElement x:Name="IntroVideo"
-                         HorizontalAlignment="Stretch"
-                         VerticalAlignment="Stretch"
-                         Margin="40"
-                         Stretch="UniformToFill"
-                         LoadedBehavior="Manual"
-                         UnloadedBehavior="Stop"
-                         MediaFailed="IntroVideo_MediaFailed"
-                         MediaEnded="IntroVideo_MediaEnded" />
-        </Grid>
-        <!-- ÉCRAN PORTE (affiché après vidéo) -->
-        <Grid x:Name="DoorGrid"
-             Visibility="Collapsed">
-            <!-- Image de la porte -->
-            <Image x:Name="DoorImage"
-                  HorizontalAlignment="Stretch"
-                  VerticalAlignment="Stretch"
-                  Stretch="UniformToFill" />
-            <!-- Bouton pour entrer -->
-            <Button x:Name="EnterButton"
-                   Content="Entrer"
-                   Width="200"
-                   Height="60"
-                   Background="#CC1A1A"
-                   Foreground="White"
-                   FontSize="24"
-                   FontWeight="Bold"
-                   BorderThickness="0"
-                   Opacity="0.9"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   Click="EnterButton_Click" />
-        </Grid>
-        <!-- FUTURE PAGE (pour l'instant blanche) -->
-        <Grid x:Name="NextPageGrid"
-             Background="White"
-             Visibility="Collapsed">
-        </Grid>
-        <!-- TITRE + DATE (par-dessus tout) -->
+        <!-- Ici on affiche les différentes vues (Intro / Porte / Calendrier) -->
+        <ContentControl x:Name="MainContent" />
+
+        <!-- Titre + date par-dessus tout -->
         <StackPanel x:Name="TitlePanel"
-                   VerticalAlignment="Top"
-                   HorizontalAlignment="Center"
-                   Margin="0,20,0,0"
-                   Opacity="0">
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Center"
+                    Margin="0,20,0,0"
+                    Opacity="0"
+                    RenderTransformOrigin="0.5,0.5">
+            <StackPanel.RenderTransform>
+                <ScaleTransform x:Name="TitleScale" ScaleX="0.9" ScaleY="0.9"/>
+            </StackPanel.RenderTransform>
+
             <TextBlock x:Name="TitleText"
-                      Text=""
-                      FontSize="50"
-                      FontWeight="Bold"
-                      Foreground="#CC1A1A"
-                      TextAlignment="Center"
-                      FontFamily="Segoe UI Black" />
+                       Text=""
+                       FontSize="50"
+                       FontWeight="Bold"
+                       Foreground="#FFE53935"
+                       TextAlignment="Center"
+                       FontFamily="Segoe UI Black">
+                <TextBlock.Effect>
+                    <DropShadowEffect Color="Black"
+                                      BlurRadius="10"
+                                      ShadowDepth="0"
+                                      Opacity="0.7"/>
+                </TextBlock.Effect>
+            </TextBlock>
+
             <TextBlock x:Name="DateText"
-                      Margin="0,10,0,0"
-                      Text=""
-                      FontSize="28"
-                      FontWeight="SemiBold"
-                      Foreground="#FFD700"
-                      TextAlignment="Center"
-                      FontFamily="Segoe UI Semibold" />
+                       Margin="0,10,0,0"
+                       Text=""
+                       FontSize="28"
+                       FontWeight="SemiBold"
+                       Foreground="#FFFFD54F"
+                       TextAlignment="Center"
+                       FontFamily="Segoe UI Semibold">
+                <TextBlock.Effect>
+                    <DropShadowEffect Color="Black"
+                                      BlurRadius="6"
+                                      ShadowDepth="0"
+                                      Opacity="0.6"/>
+                </TextBlock.Effect>
+            </TextBlock>
         </StackPanel>
     </Grid>
 </Window>
