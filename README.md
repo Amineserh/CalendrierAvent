@@ -137,7 +137,7 @@ L’objectif : proposer une ambiance totalement féérique, dynamique, animée, 
 
 <ol>
   <li>Cloner le repo</li>
-  <pre><code>git clone https://github.com/tonrepo/CalendrierAvent</code></pre>
+  <pre><code>git clone https://github.com/Amineserh/CalendrierAvent.git</code></pre>
 
   <li>Ouvrir dans Visual Studio</li>
   <li>Compiler en mode <b>Release</b></li>
